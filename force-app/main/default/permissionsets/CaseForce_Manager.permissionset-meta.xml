@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <description>Support manager: can adjust SLA fields and reads every audit entry.</description>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>CaseForce_Webhook_Cred-CaseForceWebhook</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.Category__c</field>

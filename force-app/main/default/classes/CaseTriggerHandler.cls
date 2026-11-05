@@ -22,6 +22,7 @@ public with sharing class CaseTriggerHandler {
             }
             when AFTER_UPDATE {
                 CaseAuditService.recordChanges(cases, oldCases);
+                CaseWebhookService.enqueueEscalations(cases, oldCases);
             }
         }
     }
