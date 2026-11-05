@@ -1,0 +1,49 @@
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.tile {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--slds-g-color-border-base-1, #c9c9c9);
+    border-radius: 0.25rem;
+    background: var(--slds-g-color-surface-container-1, #f3f3f3);
+}
+
+.tile-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tile-label {
+    color: var(--slds-g-color-on-surface-1, #444444);
+    font-size: 0.8125rem;
+}
+
+.tile-alert .tile-value {
+    color: var(--slds-g-color-error-base-40, #ba0517);
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: minmax(12rem, 2fr) repeat(3, minmax(8rem, 1fr)) auto;
+    gap: 0.75rem;
+    align-items: end;
+}
+
+.table-wrapper {
+    position: relative;
+    min-height: 6rem;
+}
+
+@media (max-width: 48rem) {
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+}

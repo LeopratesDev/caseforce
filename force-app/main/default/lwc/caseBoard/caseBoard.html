@@ -1,0 +1,86 @@
+<template>
+    <lightning-card title="Painel de Casos" icon-name="standard:case">
+        <lightning-button slot="actions" label="Atualizar" icon-name="utility:refresh" onclick={handleRefresh}></lightning-button>
+
+        <div class="slds-p-horizontal_medium">
+            <div class="metrics slds-m-bottom_medium">
+                <div class="tile" data-id="metric-open">
+                    <div class="tile-value">{metrics.open}</div>
+                    <div class="tile-label">Abertos</div>
+                </div>
+                <div class="tile" data-id="metric-escalated">
+                    <div class="tile-value">{metrics.escalated}</div>
+                    <div class="tile-label">Escalados</div>
+                </div>
+                <div class="tile tile-alert" data-id="metric-overdue">
+                    <div class="tile-value">{metrics.overdue}</div>
+                    <div class="tile-label">Fora do prazo</div>
+                </div>
+            </div>
+
+            <div class="filters slds-m-bottom_small">
+                <lightning-input
+                    type="search"
+                    data-id="search"
+                    label="Buscar"
+                    placeholder="Assunto ou número do caso"
+                    onchange={handleSearchChange}
+                ></lightning-input>
+                <lightning-combobox
+                    label="Status"
+                    data-filter="status"
+                    value={filters.status}
+                    options={statusOptions}
+                    onchange={handleFilterChange}
+                ></lightning-combobox>
+                <lightning-combobox
+                    label="Prioridade"
+                    data-filter="priority"
+                    value={filters.priority}
+                    options={priorityOptions}
+                    onchange={handleFilterChange}
+                ></lightning-combobox>
+                <lightning-combobox
+                    label="Categoria"
+                    data-filter="category"
+                    value={filters.category}
+                    options={categoryOptions}
+                    onchange={handleFilterChange}
+                ></lightning-combobox>
+                <lightning-input
+                    type="toggle"
+                    data-id="overdue-toggle"
+                    label="Só fora do prazo"
+                    checked={filters.onlyOverdue}
+                    message-toggle-active="Sim"
+                    message-toggle-inactive="Não"
+                    onchange={handleOverdueToggle}
+                ></lightning-input>
+            </div>
+
+            <template lwc:if={hasError}>
+                <div class="slds-text-color_error slds-m-bottom_small" role="alert" data-id="error">{errorMessage}</div>
+            </template>
+
+            <div class="table-wrapper">
+                <lightning-spinner lwc:if={isLoading} alternative-text="Carregando" size="small"></lightning-spinner>
+                <template lwc:if={hasRows}>
+                    <lightning-datatable
+                        key-field="id"
+                        data={rows}
+                        columns={columns}
+                        draft-values={draftValues}
+                        hide-checkbox-column
+                        onsave={handleSave}
+                        onrowaction={handleRowAction}
+                    ></lightning-datatable>
+                </template>
+                <template lwc:else>
+                    <p class="slds-text-color_weak slds-p-vertical_large slds-text-align_center" data-id="empty">
+                        Nenhum caso encontrado com esses filtros.
+                    </p>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
