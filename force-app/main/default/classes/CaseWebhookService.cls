@@ -11,8 +11,9 @@ public with sharing class CaseWebhookService implements Queueable, Database.Allo
     private static final String ENDPOINT = 'callout:CaseForce_Webhook/post';
     private static final String STATUS_ESCALATED = 'Escalated';
     private static final String AUDIT_FIELD = 'Webhook';
-    // Limite de 100 chamadas HTTP por transacao: um job por bloco de casos.
-    @TestVisible private static final Integer CHUNK_SIZE = 100;
+    // Limite de 100 chamadas HTTP por transacao: um job por bloco de casos. Publico porque
+    // o Batch de SLA limita seu lote a este tamanho (so 1 job enfileirado por execute).
+    public static final Integer CHUNK_SIZE = 100;
     private static final Integer TIMEOUT_MS = 10000;
 
     // Os testes do restante do projeto escalam casos o tempo todo e nao devem chamar a rede.

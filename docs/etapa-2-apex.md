@@ -20,7 +20,7 @@ flowchart LR
 |---|---|---|
 | `CaseRoutingService` | before insert, e before update se a categoria mudou | Põe o caso na fila da categoria (`Category_Routing__mdt`). Se a categoria não mudou, não mexe no dono. |
 | `CaseSlaService.setDueDates` | before insert, e before update se a prioridade mudou | Calcula `Response_Due_At__c` e `Resolution_Due_At__c` a partir de `SLA_Policy__mdt`. Prioridade vazia usa Medium. Depois da primeira resposta, o prazo de resposta não muda mais. Caso fechado é ignorado. |
-| `CaseSlaService.markFirstResponse` | before update | Grava `First_Response_At__c` na primeira vez que o status sai de `New`. Só grava uma vez. |
+| `CaseSlaService.markFirstResponse` | before update | Grava `First_Response_At__c` na primeira vez que o caso chega a um status que não é `New` nem `Escalated` (escalar um caso que ninguém tocou não é responder; regra ajustada na etapa 6). Só grava uma vez. |
 | `CaseAuditService` | after update | Uma linha em `Case_Audit__c` para cada campo acompanhado que mudou: Status, Priority, OwnerId, Category__c, Escalation_Level__c. |
 | Validation rule `Resolution_Summary_Required` | ao salvar | Bloqueia fechar o caso sem `Resolution_Summary__c`. |
 
@@ -38,8 +38,8 @@ A validação ficou **declarativa** de propósito: é uma regra de uma fórmula,
 
 - Prazos em **minutos corridos**, sem horário comercial nem feriados.
 - Na criação, o roteamento **sobrescreve o dono** definido manualmente se houver categoria.
-- "Primeira resposta" é uma aproximação: mudança de status, não e-mail enviado ao cliente.
-- `SLA_Breached__c` ainda não é preenchido. Isso vem na etapa 6, com o Batch.
+- "Primeira resposta" é uma aproximação: mudança de status (para algo que não seja `New` ou `Escalated`), não e-mail enviado ao cliente.
+- `SLA_Breached__c` é preenchido pelo Batch da etapa 6 ([detalhes](etapa-6-batch.md)).
 
 ## Testes
 

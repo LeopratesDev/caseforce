@@ -2,7 +2,7 @@
 
 Central de atendimento sobre **Salesforce Service Cloud**: casos roteados automaticamente para filas, SLA por prioridade, trilha de auditoria e integração com API externa.
 
-> **Status:** em desenvolvimento. Etapa 1 (estrutura e modelo de dados) **implantada em uma Developer Edition org** e conferida por consulta. Etapas 2 a 5 (trigger, Flow, LWC e integração) implantadas: 56 testes Apex e 13 de LWC passando.
+> **Status:** em desenvolvimento. Etapa 1 (estrutura e modelo de dados) **implantada em uma Developer Edition org** e conferida por consulta. Etapas 2 a 6 (trigger, Flow, LWC, integração e Batch) implantadas: 69 testes Apex e 13 de LWC passando.
 
 ## Por que este projeto existe
 
@@ -17,7 +17,7 @@ Antes de programar, trabalhei do outro lado do chamado: SAC e suporte técnico. 
 | 3 | Flow | Escalonamento: nível, prioridade e fila de escalonamento; 7 testes | implantada ([detalhes](docs/etapa-3-flow.md)) |
 | 4 | LWC | Painel de casos: métricas, filtros, edição na célula, ações de escalar e assumir; 13 testes Jest, 36 Apex | implantada ([detalhes](docs/etapa-4-lwc.md)) |
 | 5 | Integração | API REST de entrada (`@RestResource`) e webhook de saída com Named Credential; 20 testes novos | implantada ([detalhes](docs/etapa-5-integracao.md)) |
-| 6 | Batch Apex | Marca SLA estourado e gera resumo, agendado | |
+| 6 | Batch Apex | Marca SLA estourado, escala e grava o resumo da rodada; agendador pronto (não ligado); 13 testes novos | implantada ([detalhes](docs/etapa-6-batch.md)) |
 | 7 | CI e acabamento | GitHub Actions rodando testes, prints e resumo | |
 
 O modelo de dados, com diagrama e as decisões, está em [docs/data-model.md](docs/data-model.md).
