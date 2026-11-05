@@ -51,7 +51,3 @@ A validação ficou **declarativa** de propósito: é uma regra de uma fórmula,
 | `CaseSlaServiceTest` | prazos por prioridade, prioridade vazia, recálculo ao mudar prioridade, primeira resposta uma vez só, prazo de resposta fixo depois de responder |
 | `CaseAuditServiceTest` | valor antigo e novo, campos não acompanhados, vários campos, troca de dono pelo roteamento, 200 atualizações |
 | `CaseClosingValidationTest` | bloqueia sem resumo, permite com resumo, não trava edição de caso já fechado |
-
-## Para explicar em entrevista
-
-> Construí o trigger de Case com o padrão handler + serviços. Cada serviço cuida de uma regra (roteamento, SLA, auditoria) e é bulk-safe: testei com 200 registros e garanto por teste que o roteamento usa uma consulta só. SLA e roteamento ficam em Custom Metadata, então o negócio muda a meta sem deploy. A regra de fechamento é uma validation rule, porque é declarativa e simples; usei Apex só onde precisava de lógica.
