@@ -47,8 +47,6 @@ Um caso criado pela API ou pelo painel passa pelo mesmo caminho: o trigger o põ
 | 6 | Batch Apex | Marca SLA estourado, escala e grava o resumo da rodada; agendador pronto | [etapa 6](docs/etapa-6-batch.md) |
 | 7 | CI e acabamento | GitHub Actions, verificação de metadados, este README | [etapa 7](docs/etapa-7-ci.md) |
 
-Para uma conversa: [resumo para entrevista](docs/resumo-entrevista.md), com as decisões, o que deu errado e o que não foi feito.
-
 Cada documento de etapa traz as decisões, as limitações e **o que deu errado no caminho**, que é onde mais se aprende.
 
 ## Números medidos
