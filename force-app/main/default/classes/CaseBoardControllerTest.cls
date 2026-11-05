@@ -9,33 +9,6 @@ private class CaseBoardControllerTest {
         return ids;
     }
 
-    // Usuario padrao (nao admin) com o permission set de agente, para provar o USER_MODE.
-    private static User agentUser() {
-        Id profileId = [
-            SELECT Id FROM Profile
-            WHERE UserType = 'Standard' AND PermissionsModifyAllData = false AND UserLicense.Name = 'Salesforce'
-            LIMIT 1
-        ].Id;
-        String unique = String.valueOf(Crypto.getRandomInteger()).replace('-', 'x');
-        User u = new User(
-            Alias = 'agt' + unique.left(4),
-            Email = 'agent' + unique + '@caseforce.example.com',
-            EmailEncodingKey = 'UTF-8',
-            LastName = 'Agent',
-            LanguageLocaleKey = 'en_US',
-            LocaleSidKey = 'en_US',
-            TimeZoneSidKey = 'America/Sao_Paulo',
-            ProfileId = profileId,
-            Username = 'agent' + unique + '@caseforce.example.com'
-        );
-        insert u;
-        insert new PermissionSetAssignment(
-            AssigneeId = u.Id,
-            PermissionSetId = [SELECT Id FROM PermissionSet WHERE Name = 'CaseForce_Agent'].Id
-        );
-        return u;
-    }
-
     @IsTest
     static void returnsAllCasesWithoutFilters() {
         List<Case> cases = new List<Case>{
@@ -157,7 +130,7 @@ private class CaseBoardControllerTest {
 
     @IsTest
     static void agentSeesTheirOwnCasesWithCustomFields() {
-        User agent = agentUser();
+        User agent = CaseTestDataFactory.userWith('CaseForce_Agent');
         // Sem categoria, para o roteamento nao mandar o caso para uma fila.
         Case c = CaseTestDataFactory.build('High', null);
         c.OwnerId = agent.Id;

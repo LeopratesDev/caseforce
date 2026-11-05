@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <description>Support agent: works cases and reads the audit trail of cases they can access. SLA fields are read-only (system-managed).</description>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>CaseForce_Webhook_Cred-CaseForceWebhook</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.Category__c</field>
