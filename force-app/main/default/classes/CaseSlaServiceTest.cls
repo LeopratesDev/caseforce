@@ -73,6 +73,20 @@ private class CaseSlaServiceTest {
     }
 
     @IsTest
+    static void escalatingAnUnansweredCaseIsNotAFirstResponse() {
+        Case c = CaseTestDataFactory.build('Medium', 'Billing');
+        insert c;
+
+        update new Case(Id = c.Id, Status = 'Escalated');
+        System.assertEquals(null, [SELECT First_Response_At__c FROM Case WHERE Id = :c.Id].First_Response_At__c,
+            'Escalar um caso que ninguem tocou nao e responder o cliente');
+
+        update new Case(Id = c.Id, Status = 'Working');
+        System.assertNotEquals(null, [SELECT First_Response_At__c FROM Case WHERE Id = :c.Id].First_Response_At__c,
+            'Passar de Escalated para Working e a primeira resposta de verdade');
+    }
+
+    @IsTest
     static void keepsResponseDueAfterFirstResponse() {
         Case c = CaseTestDataFactory.build('Low', 'Billing');
         insert c;

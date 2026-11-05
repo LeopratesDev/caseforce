@@ -11,7 +11,8 @@ public with sharing class CaseAuditService {
         Case.Priority,
         Case.OwnerId,
         Case.Category__c,
-        Case.Escalation_Level__c
+        Case.Escalation_Level__c,
+        Case.SLA_Breached__c
     };
 
     // O describe e caro; resolve o nome de cada campo uma unica vez por transacao.

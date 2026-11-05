@@ -7,6 +7,7 @@ public with sharing class CaseSlaService {
     private static final String DEFAULT_PRIORITY = 'Medium';
     private static final String STATUS_NEW = 'New';
     private static final String STATUS_CLOSED = 'Closed';
+    private static final String STATUS_ESCALATED = 'Escalated';
 
     /**
      * Calcula Response_Due_At__c e Resolution_Due_At__c na criacao e sempre que
@@ -36,13 +37,16 @@ public with sharing class CaseSlaService {
     }
 
     /**
-     * Primeira resposta = o caso sai de "New" pela primeira vez. Grava uma vez
-     * so; reabrir ou mudar de status depois nao altera o valor.
+     * Primeira resposta = o caso chega pela primeira vez a um status que nao seja
+     * "New" nem "Escalated". Escalar um caso que ninguem tocou (a mao ou pelo Batch de
+     * SLA) nao e responder o cliente. Grava uma vez so; mudar de status depois nao
+     * altera o valor.
      */
     public static void markFirstResponse(List<Case> cases, Map<Id, Case> oldCases) {
         for (Case c : cases) {
             Case old = oldCases.get(c.Id);
-            if (old.Status == STATUS_NEW && c.Status != STATUS_NEW && c.First_Response_At__c == null) {
+            Boolean answered = c.Status != old.Status && c.Status != STATUS_NEW && c.Status != STATUS_ESCALATED;
+            if (answered && c.First_Response_At__c == null) {
                 c.First_Response_At__c = System.now();
             }
         }

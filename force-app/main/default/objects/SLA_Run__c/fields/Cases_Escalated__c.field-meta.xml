@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cases_Escalated__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>Of the flagged cases, how many were moved to Escalated by the run (the rest already were).</description>
+    <label>Cases Escalated</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+</CustomField>
