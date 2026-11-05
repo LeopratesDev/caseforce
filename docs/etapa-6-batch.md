@@ -64,7 +64,3 @@ CaseSlaBreachScheduler.abortScheduled();           // desliga
 - Granularidade de 15 minutos: um caso pode passar até 15 minutos do prazo antes de ser marcado.
 - Sem alerta ao gestor quando uma rodada tem falhas; só o registro em `SLA_Run__c`.
 - O Batch roda com as permissões de quem o agendou, e as alterações constam na auditoria como feitas por essa pessoa.
-
-## Para explicar em entrevista
-
-> Fiz um Batch Apex agendado que marca e escala casos com SLA estourado e grava um resumo da rodada. Dois detalhes de plataforma pesaram: o limite de um job assíncrono por `execute`, que me fez travar o lote em 100 para casar com o webhook, e o fato de que escalar mudava a regra de primeira resposta, que eu corrigi com teste. Testei na org com dados reais e ele pegou um caso que eu não previa. Deixei o agendamento desligado de propósito, porque ligar um job recorrente é uma decisão do dono da org.

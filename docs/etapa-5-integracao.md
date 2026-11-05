@@ -109,7 +109,3 @@ O Named Credential aponta para `https://httpbin.org`, um serviço público que a
 - **A credencial `Custom` está sem segredo.** Para um destino real que exija chave, é preciso preencher o parâmetro de autenticação na org.
 - O webhook e a API só têm texto em português nas mensagens de erro.
 - O interruptor `enabledInTests` desliga o webhook nos testes do restante do projeto, que escalam casos o tempo todo e não devem chamar a rede. É um atalho de teste, e ele é `@TestVisible`.
-
-## Para explicar em entrevista
-
-> Fiz as duas direções de integração. Na entrada, uma API REST em Apex que roda em USER_MODE e tem seu próprio permission set de menor privilégio, com validação que devolve 400 com mensagem útil, nunca 500. Na saída, um webhook assíncrono com Named Credential, que não manda texto livre do cliente, registra o resultado na auditoria e respeita o limite de 100 chamadas por transação dividindo em jobs. Testei contra a org de verdade e isso me salvou: descobri que `Owner.Name` vem nulo para filas só em teste, e que o External Credential não aceita "sem autenticação". Também documentei o que não cobri.

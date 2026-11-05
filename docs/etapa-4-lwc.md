@@ -54,7 +54,3 @@ flowchart LR
 - Interface só em português.
 - O filtro de busca trata `%` e `_` como texto, então não há curingas.
 - Não atualiza sozinho quando outra pessoa mexe nos casos: use o botão **Atualizar**.
-
-## Para explicar em entrevista
-
-> Fiz o painel em LWC com um controller Apex só de leitura e gravação pelo `updateRecord`, para a tela passar pelas mesmas regras do resto do sistema: validation rule, Flow, trigger e permissões. As consultas rodam em `USER_MODE` e o texto digitado entra só como bind. Um bug me ensinou bastante: o filtro não funcionava na tela, mas os testes passavam, porque o objeto de filtros chegava vazio pelo Aura. Descobri comparando a requisição e a resposta no navegador e troquei por parâmetros simples. Também aprendi a recarregar sem cache depois de implantar um LWC, e a testar com um usuário que só tem o permission set, porque foi assim que achei campos sem permissão.

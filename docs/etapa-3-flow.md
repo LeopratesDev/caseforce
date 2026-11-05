@@ -50,7 +50,3 @@ flowchart LR
 ## Armadilha que apareceu no desenvolvimento
 
 Num teste, reaproveitei o objeto `Case` em memória para um segundo `update`. Ele reenviou a prioridade antiga e **desfez** o que o Flow tinha gravado. Em teste de Flow, atualize só os campos que mudam (`update new Case(Id = c.Id, Status = '...')`) ou consulte o registro de novo.
-
-## Para explicar em entrevista
-
-> Usei Flow onde a regra era declarativa e Apex onde precisei de lógica. O escalonamento é um flow before-save, então altera o registro sem DML extra. Entendi a ordem de execução: o flow roda antes do trigger, por isso os prazos de SLA são recalculados com a prioridade nova e a auditoria já enxerga a mudança. Deixei o escalonamento por tempo para um Batch porque é testável, e Flow agendado não é.
