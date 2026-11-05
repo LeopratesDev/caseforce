@@ -40,6 +40,7 @@ Uma página para consultar antes de uma conversa. Tudo aqui sai dos documentos d
 6. **O External Credential não aceita "sem autenticação".** O deploy foi recusado; usei o protocolo `Custom`.
 7. **`MIXED_DML_OPERATION`** num teste que já existia, depois de mover um helper. Isolei a criação do usuário num `System.runAs`.
 8. **Um `404` que não era da minha API.** O Git Bash do Windows reescrevia o caminho `/services/...` como caminho de arquivo.
+9. **A coluna Assunto sumia em tela estreita.** Só percebi num print tirado em janela pequena. A primeira correção (largura mínima de 68rem com rolagem horizontal) ainda cortava o texto; medi de novo e subi para 78rem. Testei reduzindo a largura do componente, e confirmei que a tela larga não mudou.
 
 ## Números (medidos)
 
@@ -53,8 +54,7 @@ Uma página para consultar antes de uma conversa. Tudo aqui sai dos documentos d
 ## O que eu não fiz, dito com clareza
 
 - **O job de Apex do CI nunca rodou**, porque depende de um segredo que o dono da org ainda não criou. Está escrito, mas sem prova.
-- **No painel, três funções estão cobertas pelo Jest, mas não foram testadas à mão no navegador:** edição na célula, ação Assumir e busca por texto.
-- A coluna Assunto encolhe em janelas estreitas (menos de cerca de 1100 px).
+- A tabela do painel só foi testada reduzindo a largura do componente para 900 px (rola na horizontal), não num celular de verdade.
 - Prazos em minutos corridos, sem horário comercial.
 - API sem idempotência e webhook sem repetição de envio.
 - O destino do webhook é um serviço público de demonstração.

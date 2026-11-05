@@ -36,6 +36,14 @@
 .table-wrapper {
     position: relative;
     min-height: 6rem;
+    overflow-x: auto;
+}
+
+/* As colunas fixas e a numeração somam cerca de 59rem; o resto fica para o assunto. Em tela
+   estreita o contêiner rola na horizontal em vez de espremer a coluna Assunto. */
+.table-wrapper lightning-datatable {
+    display: block;
+    min-width: 78rem;
 }
 
 @media (max-width: 48rem) {
