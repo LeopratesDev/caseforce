@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLA_Breached__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marked by the scheduled batch when an open case passes its due date.</description>
+    <label>SLA Breached</label>
+    <trackHistory>true</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
