@@ -1,0 +1,5 @@
+# Fim de linha LF em tudo, para o repositorio nao mudar de aparencia entre Windows e Linux.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary
