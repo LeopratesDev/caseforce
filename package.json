@@ -1,0 +1,14 @@
+{
+    "name": "caseforce",
+    "private": true,
+    "version": "1.0.0",
+    "description": "Central de atendimento em Salesforce Service Cloud",
+    "scripts": {
+        "test": "npm run test:unit",
+        "test:unit": "sfdx-lwc-jest",
+        "test:unit:coverage": "sfdx-lwc-jest -- --coverage"
+    },
+    "devDependencies": {
+        "@salesforce/sfdx-lwc-jest": "^7.9.0"
+    }
+}
