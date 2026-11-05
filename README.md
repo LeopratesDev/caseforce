@@ -2,7 +2,7 @@
 
 Central de atendimento sobre **Salesforce Service Cloud**: casos roteados automaticamente para filas, SLA por prioridade, trilha de auditoria e integração com API externa.
 
-> **Status:** em desenvolvimento. Etapa 1 (estrutura e modelo de dados) **implantada em uma Developer Edition org** e conferida por consulta. Etapa 2 (Apex Trigger) com 19 testes passando.
+> **Status:** em desenvolvimento. Etapa 1 (estrutura e modelo de dados) **implantada em uma Developer Edition org** e conferida por consulta. Etapas 2 (Apex Trigger) e 3 (Flow) com 26 testes passando.
 
 ## Por que este projeto existe
 
@@ -14,7 +14,7 @@ Antes de programar, trabalhei do outro lado do chamado: SAC e suporte técnico. 
 |---|---|---|---|
 | 1 | Estrutura SFDX e modelo de dados | Campos de Case, `Case_Audit__c`, Custom Metadata (SLA e roteamento), filas, permission sets | implantada |
 | 2 | Apex Trigger | Roteamento por categoria, cálculo de prazos, auditoria, validação de fechamento; 19 testes, 98% de cobertura | implantada ([detalhes](docs/etapa-2-apex.md)) |
-| 3 | Flow | Escalonamento de casos | |
+| 3 | Flow | Escalonamento: nível, prioridade e fila de escalonamento; 7 testes | implantada ([detalhes](docs/etapa-3-flow.md)) |
 | 4 | LWC | Painel de tickets com filtros e edição inline | |
 | 5 | Integração | Callout com Named Credentials e endpoint `@RestResource` | |
 | 6 | Batch Apex | Marca SLA estourado e gera resumo, agendado | |
@@ -28,9 +28,10 @@ O modelo de dados, com diagrama e as decisões, está em [docs/data-model.md](do
 force-app/main/default/
   objects/            Case (campos), Case_Audit__c, SLA_Policy__mdt, Category_Routing__mdt
   customMetadata/     valores de SLA e de roteamento
-  queues/             filas por categoria
+  queues/             filas por categoria e fila de escalonamento
   permissionsets/     CaseForce_Agent, CaseForce_Manager
-  classes/ triggers/ flows/ lwc/   (preenchidos nas próximas etapas)
+  classes/ triggers/ flows/   Apex, trigger e flow de escalonamento
+  lwc/                preenchida na etapa 4
 config/               definição de scratch org
 docs/                 documentação
 ```

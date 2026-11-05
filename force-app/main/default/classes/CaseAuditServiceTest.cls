@@ -37,7 +37,7 @@ private class CaseAuditServiceTest {
         Case c = CaseTestDataFactory.build('Low', 'Billing');
         insert c;
 
-        c.Status = 'Escalated';
+        c.Status = 'Working';
         c.Priority = 'High';
         c.Escalation_Level__c = 1;
         update c;
