@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resolution_Summary_Required</fullName>
+    <active>true</active>
+    <description>A case cannot be closed without a resolution summary.</description>
+    <errorConditionFormula>AND(
+    OR(ISNEW(), ISCHANGED(Status)),
+    ISPICKVAL(Status, &quot;Closed&quot;),
+    ISBLANK(Resolution_Summary__c)
+)</errorConditionFormula>
+    <errorDisplayField>Resolution_Summary__c</errorDisplayField>
+    <errorMessage>Informe o resumo da resolução antes de fechar o caso.</errorMessage>
+</ValidationRule>
