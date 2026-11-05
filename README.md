@@ -118,8 +118,7 @@ O GitHub Actions roda a cada push na `main` e a cada pull request:
 ## Limitações conhecidas
 
 - Prazos de SLA em **minutos corridos**, sem horário comercial nem feriados.
-- A coluna **Assunto** do painel encolhe quando a janela fica menor que cerca de 1100 px, porque as outras colunas têm largura fixa.
-- No painel, a edição na célula, a ação **Assumir** e a busca por texto estão cobertas pelo Jest, mas **não foram testadas à mão no navegador**.
+- Em telas estreitas a tabela do painel **rola na horizontal** (largura mínima de 78rem) para a coluna Assunto não ser espremida. Testei reduzindo a largura do componente para 900 px, não num celular de verdade.
 - A API REST não tem idempotência (o mesmo `POST` duas vezes cria dois casos), e o webhook não repete envios que falham.
 - O job de **Apex do CI nunca rodou de verdade**: depende de um segredo que ainda não foi criado. O que está escrito nele é o que a documentação do Salesforce CLI indica, mas está sem prova.
 - Interface e mensagens de erro só em português.

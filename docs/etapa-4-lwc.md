@@ -39,7 +39,7 @@ flowchart LR
 | LWC (Jest) | 13 testes passando. Cobertura de `caseBoard.js`: **92% das instruções, 90% das funções, 60% dos ramos** (os ramos são o ponto fraco) |
 | Navegador, na org, com 8 casos de demonstração | Métricas corretas (8 abertos, 1 escalado, 2 fora do prazo); ordem por prazo; vermelho nos vencidos e nas prioridades altas; **Escalar** no caso `00001029` (Low → Escalated, prioridade Medium, nível 1, fila Escalation Support, prazo recalculado, métrica de escalados de 1 para 2); filtro de prioridade (3 casos High); filtros de prioridade e "só fora do prazo" juntos (1 caso) |
 
-**Não confirmado no navegador:** a edição do assunto na célula (a automação não conseguiu digitar no campo), o botão **Assumir** e a busca por texto. Os dois primeiros estão cobertos pelo Jest; a gravação em si usa o mesmo `updateRecord` que o **Escalar** provou funcionar na org.
+**Confirmado depois, no navegador e no banco:** a busca por texto ("boleto" devolveu os dois casos certos), o botão **Assumir** (o dono do `00001031` passou de Billing Support para o usuário logado, e a auditoria registrou a troca) e a edição do assunto na célula (barra Cancelar/Salvar, aviso "Salvo" e o novo assunto gravado). Na primeira tentativa a automação não conseguiu digitar no campo da tabela; o que funcionou foi definir o valor do campo e confirmar.
 
 ## O que deu errado no caminho (e o que ficou)
 
