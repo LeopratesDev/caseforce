@@ -2,7 +2,7 @@
 
 Central de atendimento sobre **Salesforce Service Cloud**: casos roteados automaticamente para filas, SLA por prioridade, trilha de auditoria e integração com API externa.
 
-> **Status:** em desenvolvimento. Etapa 1 (estrutura e modelo de dados) **implantada em uma Developer Edition org** e conferida por consulta.
+> **Status:** em desenvolvimento. Etapa 1 (estrutura e modelo de dados) **implantada em uma Developer Edition org** e conferida por consulta. Etapa 2 (Apex Trigger) com 19 testes passando.
 
 ## Por que este projeto existe
 
@@ -13,7 +13,7 @@ Antes de programar, trabalhei do outro lado do chamado: SAC e suporte técnico. 
 | # | Etapa | Entrega | Status |
 |---|---|---|---|
 | 1 | Estrutura SFDX e modelo de dados | Campos de Case, `Case_Audit__c`, Custom Metadata (SLA e roteamento), filas, permission sets | implantada |
-| 2 | Apex Trigger | Roteamento por categoria, cálculo de prazos, auditoria, validação de fechamento; testes com mais de 75% | |
+| 2 | Apex Trigger | Roteamento por categoria, cálculo de prazos, auditoria, validação de fechamento; 19 testes, 98% de cobertura | implantada ([detalhes](docs/etapa-2-apex.md)) |
 | 3 | Flow | Escalonamento de casos | |
 | 4 | LWC | Painel de tickets com filtros e edição inline | |
 | 5 | Integração | Callout com Named Credentials e endpoint `@RestResource` | |
